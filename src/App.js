@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState,useEffect } from 'react'
 
 import React from 'react'
 
@@ -81,6 +81,21 @@ function App(){
     'Estudar para ESA'
   ]);
   
+  useEffect(()=>{
+    const tarefasStorage = localStorage.getItem('@tarefa');
+
+    if(tarefasStorage){
+      setTarefa(JSON.parse(tarefasStorage))
+    }
+    
+  }, []);
+
+  useEffect(()=>{
+    localStorage.setItem('@tarefa', JSON.stringify(tarefas))
+  }, [tarefas]);
+
+
+
   function handleRegister(e){
     e.preventDefault();
 
